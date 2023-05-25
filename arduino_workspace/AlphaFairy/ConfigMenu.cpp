@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "ConfigMenu.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
 

@@ -1,7 +1,9 @@
+#include <Arduino.h>
+#include "Intervalometer.h"
 #include "AlphaFairy.h"
 #include <M5DisplayExt.h>
 #include "FairyMenu.h"
-
+#include <PowerMgmt.h>
 static uint32_t intervalometer_start_time;
 
 extern bool tallylite_enable;

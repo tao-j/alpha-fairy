@@ -54,3 +54,13 @@ class AlphaFairyCamera
 };
 
 #endif
+
+
+// int shutter_to_millis(int);
+// int parse_shutter_speed_str(char *);
+// int get_idx_in_str_tbl(char *, int, int);
+// bool get_str_at_tbl_idx(char *, int, char *);
+// bool get_val_at_tbl_idx(char *, int, void *, int);
+// int get_idx_in_str_tbl(char *, int, int);
+// bool get_str_at_tbl_idx(char *, int, char *);
+// bool get_val_at_tbl_idx(char *, int, void *, int);

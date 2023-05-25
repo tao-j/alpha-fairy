@@ -1,5 +1,8 @@
+#include <Arduino.h>
+#include "CmdlineHandlers.h"
 #include "AlphaFairy.h"
 #include <SerialCmdLine.h>
+#include <Settings.h>
 
 /*
 handles command line commands

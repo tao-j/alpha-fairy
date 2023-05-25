@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "FocusEncoder.h"
 #include "AlphaFairy.h"
 #include <FairyEncoder.h>
 

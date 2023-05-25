@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "FocusStack.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
 

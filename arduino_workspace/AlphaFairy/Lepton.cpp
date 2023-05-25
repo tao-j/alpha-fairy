@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "Lepton.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
 

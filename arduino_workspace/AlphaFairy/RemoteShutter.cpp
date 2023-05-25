@@ -1,6 +1,10 @@
+#include <Arduino.h>
+#include "RemoteShutter.h"
 #include "AlphaFairy.h"
 
 extern bool airplane_mode;
+extern void cam_shootOpen();
+extern void cam_shootClose();
 
 void remote_shutter(uint8_t time_delay, bool use_gui)
 {

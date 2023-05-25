@@ -1,7 +1,9 @@
+#include <Arduino.h>
+#include "SoundTrigger.h"
 #include "AlphaFairy.h"
 #include <M5StickCPlus.h>
 #include <driver/i2s.h>
-
+#include <Intervalometer.h>
 /*
 NOTE: the newer I2S code in ESP-IDF has not made it into the Arduino ESP32 core yet
 */

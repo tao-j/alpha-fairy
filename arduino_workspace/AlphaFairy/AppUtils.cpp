@@ -1,4 +1,9 @@
+#include <Arduino.h>
+#include "AppUtils.h"
 #include "AlphaFairy.h"
+#include <CpuFreq.h>
+#include <DrawingUtils.h>
+#include <FairyMenu.h>
 
 #ifdef ENABLE_BUILD_LEPTON
 extern bool lepton_enable_poll;

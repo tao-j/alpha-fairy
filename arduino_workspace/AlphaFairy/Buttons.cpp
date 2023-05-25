@@ -1,3 +1,6 @@
+#include <Arduino.h>
+#include "Buttons.h"
+#include <CpuFreq.h>
 #include "AlphaFairy.h"
 #include <Arduino.h>
 #include <stdbool.h>

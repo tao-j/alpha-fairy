@@ -1,5 +1,12 @@
+#include <Arduino.h>
+#include "AutoConnect.h"
 #include "AlphaFairy.h"
 #include <FairyKeyboard.h>
+#include <CpuFreq.h>
+#include <DrawingUtils.h>
+#include <Buttons.h>
+#include <FairyMenu.h>
+#include <WifiUtils.h>
 
 bool autoconnect_active = false;
 int  autoconnect_status = 0;

@@ -1,5 +1,9 @@
+#include <Arduino.h>
+#include "Trigger.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
+#include "SoundTrigger.h"
+#include "PowerMgmt.h"
 
 int32_t trigger_source = TRIGSRC_MIC;
 int32_t trigger_action = TRIGACT_PHOTO;

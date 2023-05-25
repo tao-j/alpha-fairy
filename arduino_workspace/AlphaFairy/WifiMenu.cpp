@@ -1,5 +1,9 @@
+#include <Arduino.h>
+#include "WifiMenu.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
+#include <Settings.h>
+#include <HttpServer.h>
 
 static uint32_t wifinfo_previp = 0;
 

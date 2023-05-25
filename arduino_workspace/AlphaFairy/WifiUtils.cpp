@@ -1,4 +1,7 @@
+#include <Arduino.h>
+#include "WifiUtils.h"
 #include "AlphaFairy.h"
+#include <WifiHandlers.h>
 
 extern void wifi_onConnect(void);
 extern void wifi_onDisconnect(uint8_t, int);
@@ -296,6 +299,9 @@ int wifiprofile_autoFind(wifiprofile_t* ptgt)
     return -1;
 }
 
+extern bool prevent_status_bar_thread;
+extern void show_poweroff();
+extern void run_wifi_cfg();
 void force_wifi_config(const char* fp)
 {
     prevent_status_bar_thread = true;
@@ -346,6 +352,8 @@ void wifi_pswdPromptDrawCb()
     M5Lcd.setCursor(5, 18);
     M5Lcd.print("Password:");
 }
+
+extern void autoconnect_poll();
 
 int wifi_promptForPassword(char* ssid, char* existingPassword, char* newPassword)
 {

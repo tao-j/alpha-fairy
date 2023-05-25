@@ -1,0 +1,44 @@
+#define MICTRIG_LEVEL_BAR_HEIGHT   8
+#define MICTRIG_LEVEL_TRIG_HEIGHT 12
+
+bool app_poll();
+void app_waitAllRelease();
+void app_waitAllReleaseConnecting();
+void app_waitAllReleaseUnsupported();
+void app_sleep(uint32_t, bool);
+void settings_save();
+void pwr_lcdUndim();
+void pwr_sleepCheck();
+void pwr_tick(bool);
+bool btnSide_hasPressed();
+bool btnBig_hasPressed();
+bool btnPwr_hasPressed();
+bool btnBoth_hasPressed();
+bool btnAny_hasPressed();
+bool btnSide_isPressed();
+bool btnBig_isPressed();
+bool btnPwr_isPressed();
+bool btnBoth_isPressed();
+bool btnAll_isPressed();
+void btnSide_clrPressed();
+void btnBig_clrPressed();
+void btnPwr_clrPressed();
+void btnBoth_clrPressed();
+void btnAny_clrPressed();
+void gui_drawVerticalDots(int, int, int, int, int, int, bool, uint16_t, uint16_t);
+void gui_startAppPrint();
+void gui_startMenuPrint();
+void gui_drawConnecting(bool);
+void gui_setCursorNextLine();
+void gui_blankRestOfLine();
+void gui_drawTopThickLine(uint16_t, uint16_t);
+void gui_drawSpinStatus(uint16_t, uint16_t);
+void gui_showVal(int32_t, uint32_t, int *);
+int8_t gui_drawFocusPullState(int);
+void gui_drawLevelBar(int32_t, int32_t, int32_t, int32_t);
+void draw_borderRect(int16_t, uint16_t);
+void interval_drawTimerStart();
+void interval_drawTimerLine(int16_t, int16_t, int8_t, uint16_t);
+void interval_drawTimerCircle(int16_t, int16_t);
+void fpull_drawOneArrowLeft(int16_t, int16_t, uint16_t);
+void fpull_drawOneArrowRight(int16_t, int16_t, uint16_t);

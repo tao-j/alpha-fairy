@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "HttpServer.h"
 #include "AlphaFairy.h"
 #include <WiFi.h>
 #include <FS.h>

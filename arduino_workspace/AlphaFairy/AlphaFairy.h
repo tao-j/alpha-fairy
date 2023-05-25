@@ -25,6 +25,14 @@
 #include <SonyCameraInfraredRemote.h>
 #include <DebuggingSerial.h>
 
+// This list can be reduced
+#include <CpuFreq.h>
+#include <AppUtils.h>
+#include <DrawingUtils.h>
+#include <FairyMenu.h>
+#include <WifiUtils.h>
+#include <CamUtils.h>
+
 #ifdef ENABLE_BUILD_LEPTON
 #include <Lepton.h>
 #endif
@@ -35,7 +43,12 @@ extern AlphaFairyCamera     fairycam;
 extern SerialCmdLine        cmdline;
 extern configsettings_t     config_settings;
 extern AlphaFairyImu        imu;
-extern SpriteMgr* sprites;
+extern FairyEncoder         fencoder;
+extern SpriteMgr*           sprites;
+
+extern uint32_t             gpio_time;
+extern int wifi_err_reason;
+
 
 extern
 #ifdef DISABLE_ALL_MSG
@@ -73,5 +86,7 @@ extern void btnBig_clrPressed(void);
 extern void btnPwr_clrPressed(void);
 extern void btnBoth_clrPressed(void);
 extern void btnAny_clrPressed(void);
+
+extern void critical_error(const char *msg);
 
 #endif

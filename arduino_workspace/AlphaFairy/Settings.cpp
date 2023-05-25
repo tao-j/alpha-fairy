@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "Settings.h"
 #include "AlphaFairy.h"
 #include <EEPROM.h>
 

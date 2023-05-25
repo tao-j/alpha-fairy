@@ -1,5 +1,8 @@
+#include <Arduino.h>
+#include "ShutterStep.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
+#include "InfoView.h"
 
 extern int32_t infoscr_reqShutter;
 

@@ -1,4 +1,8 @@
+#include <Arduino.h>
+#include "WifiHandlers.h"
 #include "AlphaFairy.h"
+#include "AutoConnect.h"
+#include <PowerMgmt.h>
 
 extern bool autoconnect_active;
 extern int autoconnect_status;

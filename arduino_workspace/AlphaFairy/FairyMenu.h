@@ -10,6 +10,21 @@
 extern bool redraw_flag;
 extern void cpufreq_boost(void);
 
+extern M5DisplayExt M5Lcd;
+
+extern void gui_startAppPrint(void);
+extern void gui_drawStatusBar(bool);
+extern void gui_showVal(int32_t x, uint32_t txtfmt, Print* printer);
+
+extern void tallylite_task(void);
+
+extern void handle_user_reauth(void); // shows the wifi error screen and offers the user a way of changing wifi password
+
+#ifdef ENABLE_BUILD_LEPTON
+extern void lepton_encRead(bool* sw, int16_t* inc, int16_t* rem);
+extern void lepton_encClear(void);
+#endif
+
 // the base class that every type of menu item is derived from
 class FairyItem
 {

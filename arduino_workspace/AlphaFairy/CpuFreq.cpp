@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "CpuFreq.h"
 #include "AlphaFairy.h"
 
 #include "driver/uart.h"

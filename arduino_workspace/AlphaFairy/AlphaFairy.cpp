@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #include "AlphaFairy.h"
 #include <M5StickCPlus.h>
 #include <M5DisplayExt.h>
@@ -13,6 +15,47 @@
 #include <FairyEncoder.h>
 #include <SerialCmdLine.h>
 #include <SonyCameraInfraredRemote.h>
+
+#include <alfy_conf.h>
+#include <alfy_defs.h>
+#include <alfy_types.h>
+#include <AlphaFairyCamera.h>
+#include <AlphaFairy.h>
+#include <AppUtils.h>
+#include <AutoConnect.h>
+#include <Buttons.h>
+#include <CamUtils.h>
+#include <CmdlineHandlers.h>
+#include <ConfigMenu.h>
+#include <CpuFreq.h>
+#include <DrawingUtils.h>
+#include <DualShutter.h>
+#include <FairyMenu.h>
+#include <FocusEncoder.h>
+#include <FocusFrustration.h>
+#include <FocusPull.h>
+#include <FocusStack.h>
+#include <HttpServer.h>
+#include <InfoView.h>
+#include <Intervalometer.h>
+#include <Lepton.h>
+#include <PowerMgmt.h>
+#include <QuickRemote.h>
+#include <RemoteShutter.h>
+#include <Settings.h>
+#include <ShutterStep.h>
+#include <SoundTrigger.h>
+#include <TallyLite.h>
+#include <TimecodeReset.h>
+#include <Trigger.h>
+#include <WifiHandlers.h>
+#include <WifiMenu.h>
+#include <WifiUtils.h>
+
+void spiffs_init();
+void setup_menus();
+void setup_aboutme();
+void shutterrelease_task();
 
 #ifdef ENABLE_BUILD_LEPTON
 #include <Lepton.h>
@@ -32,8 +75,8 @@ DebuggingSerial
 uint32_t gpio_time = 0; // keeps track of the GPIO shutter activation time so it doesn't get stuck
 
 bool airplane_mode = false;
+bool redraw_flag = false;
 
-bool redraw_flag = false; // forces menu redraw
 SpriteMgr* sprites;
 
 AlphaFairyImu imu;
@@ -219,7 +262,6 @@ void shutterrelease_task()
     }
 }
 
-extern int wifi_err_reason;
 extern bool prevent_status_bar_thread;
 
 void critical_error(const char* fp)

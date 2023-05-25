@@ -1,4 +1,7 @@
+#include <Arduino.h>
+#include "TallyLite.h"
 #include "AlphaFairy.h"
+#include "FocusEncoder.h"
 
 extern bool redraw_flag;
 bool tallylite_nopoll = false; // used to prevent recursion in app_poll()

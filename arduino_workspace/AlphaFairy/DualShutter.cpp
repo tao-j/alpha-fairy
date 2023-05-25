@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "DualShutter.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
 

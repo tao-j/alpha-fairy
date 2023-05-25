@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "PowerMgmt.h"
 #include "AlphaFairy.h"
 #include <M5StickCPlus.h>
 #include <M5DisplayExt.h>

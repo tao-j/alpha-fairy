@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "DrawingUtils.h"
 #include "AlphaFairy.h"
 #include <M5DisplayExt.h>
 
@@ -342,9 +344,6 @@ void gui_drawLevelBar(int32_t lvl1, int32_t lvl2, int32_t thresh1, int32_t thres
         level_canvas = new TFT_eSprite(&M5Lcd);
         level_canvas->createSprite(M5Lcd.width() - GENERAL_ICON_WIDTH, MICTRIG_LEVEL_MARGIN);
     }
-
-    #define MICTRIG_LEVEL_BAR_HEIGHT   8
-    #define MICTRIG_LEVEL_TRIG_HEIGHT 12
 
     int16_t ysplit = MICTRIG_LEVEL_TRIG_HEIGHT / 2;
 

@@ -1,4 +1,12 @@
+#include <Arduino.h>
+#include "QuickRemote.h"
 #include "AlphaFairy.h"
+#include <InfoView.h>
+#include <RemoteShutter.h>
+#include <FocusPull.h>
+#include <Settings.h>
+
+extern bool tallylite_enable;
 
 #define QIKRMT_ROLL_SPAN 60
 #define QIKRMT_HYSTER    3

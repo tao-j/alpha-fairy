@@ -1,4 +1,7 @@
+#include <Arduino.h>
+#include "CamUtils.h"
 #include "AlphaFairy.h"
+#include "AppUtils.h"
 
 extern bool airplane_mode;
 

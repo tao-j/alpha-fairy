@@ -1,5 +1,8 @@
+#include <Arduino.h>
+#include "InfoView.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
+#include <TallyLite.h>
 
 #define INFOSCR_CORNER_MARGIN 65
 #define INFOSCR_MIDDIV_MARGIN 5

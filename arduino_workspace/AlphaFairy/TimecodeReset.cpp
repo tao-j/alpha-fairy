@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#include "TimecodeReset.h"
 #include "AlphaFairy.h"
 #include "FairyMenu.h"
 #include <SonyCameraInfraredRemote.h>

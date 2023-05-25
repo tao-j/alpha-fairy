@@ -2,21 +2,6 @@
 #include "AlphaFairy.h"
 #include <M5DisplayExt.h>
 
-extern M5DisplayExt M5Lcd;
-
-extern void gui_startAppPrint(void);
-extern void gui_drawStatusBar(bool);
-extern void gui_showVal(int32_t x, uint32_t txtfmt, Print* printer);
-
-extern void tallylite_task(void);
-
-extern void handle_user_reauth(void); // shows the wifi error screen and offers the user a way of changing wifi password
-
-#ifdef ENABLE_BUILD_LEPTON
-extern void lepton_encRead(bool* sw, int16_t* inc, int16_t* rem);
-extern void lepton_encClear(void);
-#endif
-
 int8_t FairyCfgApp::prev_tilt = 0;
 bool FairyCfgItem::dirty = false;
 
