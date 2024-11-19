@@ -70,7 +70,7 @@ DebuggingSerialDisabled
 #else
 DebuggingSerial
 #endif
-                        dbg_ser(&Serial);
+                        dbg_ser(&Serial1);
 
 uint32_t gpio_time = 0; // keeps track of the GPIO shutter activation time so it doesn't get stuck
 
