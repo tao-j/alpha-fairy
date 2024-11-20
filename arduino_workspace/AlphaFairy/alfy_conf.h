@@ -14,8 +14,8 @@
 
 //#define DISABLE_STATUS_BAR
 //#define DISABLE_POWER_SAVE
-#define DISABLE_CMD_LINE
-#define DISABLE_ALL_MSG
+// #define DISABLE_CMD_LINE
+// #define DISABLE_ALL_MSG
 #define MUTE_NETMSG_ON_BOOT
 //#define HTTP_MOCKBTNS_ENABLE
 //#define HTTP_ON_BOOT

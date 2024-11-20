@@ -173,20 +173,20 @@ void trigger_drawActionIcon(int16_t y)
     int16_t x = M5Lcd.width() - w;
     if (trigger_action == TRIGACT_PHOTO)
     {
-        M5Lcd.drawPngFile(SPIFFS, "/camera_icon.png", x, y);
+      M5Lcd.drawPngFile(LittleFS, "/camera_icon.png", x, y);
     }
     else if (trigger_action == TRIGACT_VIDEO)
     {
-        M5Lcd.drawPngFile(SPIFFS, "/vid_icon.png", x, y);
+      M5Lcd.drawPngFile(LittleFS, "/vid_icon.png", x, y);
     }
     else if (trigger_action == TRIGACT_INTERVAL)
     {
-        M5Lcd.drawPngFile(SPIFFS, "/intervalometer_icon.png", x, y);
+      M5Lcd.drawPngFile(LittleFS, "/intervalometer_icon.png", x, y);
     }
     else
     {
         M5Lcd.fillRect(x, y, w, w, TFT_BLACK);
-        //M5Lcd.drawPngFile(SPIFFS, "/trap_icon.png", x, y);
+        // M5Lcd.drawPngFile(LittleFS, "/trap_icon.png", x, y);
     }
 }
 
@@ -802,20 +802,20 @@ class AppShutterTrigger : public FairyCfgApp
             int16_t x = M5Lcd.width() - w, y = M5Lcd.height() - w;
             if (trigger_source == TRIGSRC_MIC)
             {
-                M5Lcd.drawPngFile(SPIFFS, "/mic_icon.png", x, y);
+              M5Lcd.drawPngFile(LittleFS, "/mic_icon.png", x, y);
             }
             else if (trigger_source == TRIGSRC_EXINPUT)
             {
-                M5Lcd.drawPngFile(SPIFFS, "/extinput_icon.png", x, y);
+              M5Lcd.drawPngFile(LittleFS, "/extinput_icon.png", x, y);
             }
             else if (trigger_source == TRIGSRC_IMU)
             {
-                M5Lcd.drawPngFile(SPIFFS, "/imu_icon.png", x, y);
+              M5Lcd.drawPngFile(LittleFS, "/imu_icon.png", x, y);
             }
             #ifdef ENABLE_BUILD_LEPTON
             else if (trigger_source == TRIGSRC_THERMAL)
             {
-                M5Lcd.drawPngFile(SPIFFS, "/lepton_icon.png", x, y);
+              M5Lcd.drawPngFile(LittleFS, "/lepton_icon.png", x, y);
             }
             #endif
             else

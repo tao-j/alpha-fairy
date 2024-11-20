@@ -1,5 +1,5 @@
 #include <FairyKeyboard.h>
-#include <M5StickCPlus.h>
+#include <M5Unified.h>
 
 #define PIN_BTN_SIDE 39
 #define PIN_BTN_BIG 37

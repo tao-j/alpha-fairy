@@ -439,14 +439,13 @@ class AppFocus9Point : public FairyMenuItem
 
         void show_unable(const char* reason)
         {
-            M5Lcd.drawPngFile(SPIFFS, "/9point_unable.png", 0, 0);
-            if (reason != NULL)
-            {
-                gui_startMenuPrint();
-                M5Lcd.setTextFont(0);
-                M5Lcd.setTextColor(TFT_RED, TFT_WHITE);
-                M5Lcd.setCursor(8, M5Lcd.height() - 18 - M5Lcd.fontHeight());
-                M5Lcd.print(reason);
+          M5Lcd.drawPngFile(LittleFS, "/9point_unable.png", 0, 0);
+          if (reason != NULL) {
+            gui_startMenuPrint();
+            M5Lcd.setTextFont(0);
+            M5Lcd.setTextColor(TFT_RED, TFT_WHITE);
+            M5Lcd.setCursor(8, M5Lcd.height() - 18 - M5Lcd.fontHeight());
+            M5Lcd.print(reason);
             }
             set_redraw();
             app_waitAllRelease();

@@ -158,7 +158,7 @@ void qikrmt_task(bool freeze_row)
             // if previous was info-view, then redraw the entire background
             if (qikrmt_row_prev == QIKRMT_ROW_INFOSCR) {
                 M5Lcd.setRotation(0);
-                M5Lcd.drawPngFile(SPIFFS, "/qikrmt_active.png", 0, 0);
+                M5Lcd.drawPngFile(LittleFS, "/qikrmt_active.png", 0, 0);
                 tallylite_enable = true;
             }
 
@@ -230,7 +230,7 @@ class AppQuickRemote : public FairyMenuItem
         virtual bool on_execute(void)
         {
             reset();
-            M5Lcd.drawPngFile(SPIFFS, "/qikrmt_active.png", 0, 0);
+            M5Lcd.drawPngFile(LittleFS, "/qikrmt_active.png", 0, 0);
             redraw_flag = false;
             app_waitAllRelease();
 
@@ -240,7 +240,7 @@ class AppQuickRemote : public FairyMenuItem
 
                 if (redraw_flag) {
                     if (qikrmt_row != QIKRMT_ROW_INFOSCR) {
-                        M5Lcd.drawPngFile(SPIFFS, "/qikrmt_active.png", 0, 0);
+                      M5Lcd.drawPngFile(LittleFS, "/qikrmt_active.png", 0, 0);
                     }
                 }
 

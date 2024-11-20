@@ -11,6 +11,7 @@
 #include <DebuggingSerial.h>
 
 #include <WiFiUdp.h>
+#include <WiFi.h>
 #include <HTTPClient.h>
 
 #define SHCAM_RXBUFF_UNIT     64

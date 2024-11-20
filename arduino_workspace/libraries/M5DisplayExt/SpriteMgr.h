@@ -7,7 +7,6 @@
 #include <string.h>
 
 #include "M5DisplayExt.h"
-#include "M5Display.h" // this includes "Sprite.h" for us
 
 typedef struct
 {

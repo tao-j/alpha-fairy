@@ -185,7 +185,7 @@ void handle_user_reauth()
     bool user_quit = false;
 
     M5Lcd.setRotation(0);
-    M5Lcd.drawPngFile(SPIFFS, "/wifi_reject.png", 0, 0);
+    M5Lcd.drawPngFile(LittleFS, "/wifi_reject.png", 0, 0);
     while (true)
     {
         autoconnect_poll();

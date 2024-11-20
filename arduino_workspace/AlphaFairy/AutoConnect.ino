@@ -89,7 +89,7 @@ class AppAutoConnect : public FairyMenuItem
                     M5Lcd.setRotation(0);
                     M5Lcd.fillRect(0,  39, M5Lcd.width(), 62, TFT_WHITE); // remove old icons
                     M5Lcd.fillRect(0, 141, M5Lcd.width(), 62, TFT_WHITE); // remove old icons
-                    M5Lcd.drawPngFile(SPIFFS, "/autoconn_icon.png", x, y);
+                    M5Lcd.drawPngFile(LittleFS, "/autoconn_icon.png", x, y);
                     gui_drawStatusBar(false);
                 }
 
@@ -145,7 +145,8 @@ class AppAutoConnect : public FairyMenuItem
                             {
                                 dbg_ser.printf("autoconnect new SSID: %s\r\n", ssid_str);
                                 result_code = AUTOCONNRES_FOUND_NEW;
-                                // use the data structure as a cache, we can save it into SPIFFS later quickly
+                                // use the data structure as a cache, we can
+                                // save it into LittleFS later quickly
                                 strncpy(profile.ssid, ssid_str, WIFI_STRING_LEN);
                                 profile.password[0] = 0;
                                 profile.opmode = WIFIOPMODE_STA;

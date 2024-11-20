@@ -280,15 +280,14 @@ void lepton_saveImg()
             lepton_saveNum++;
         }
         sprintf(fname, "/flir_%u.bin", lepton_saveNum);
-        if (SPIFFS.exists(fname) == false) {
-            break;
-        }
-        else {
-            lepton_saveNum++;
-            continue;
+        if (LittleFS.exists(fname) == false) {
+          break;
+        } else {
+          lepton_saveNum++;
+          continue;
         }
     }
-    File f = SPIFFS.open(fname, FILE_WRITE);
+    File f = LittleFS.open(fname, FILE_WRITE);
     if (!f) {
         return;
     }

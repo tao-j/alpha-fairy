@@ -1,18 +1,18 @@
 #include "AlphaFairy.h"
-#include <M5StickCPlus.h>
-#include <M5DisplayExt.h>
-#include <SpriteMgr.h>
+#include "AlphaFairyCamera.h"
 #include "FairyMenu.h"
+#include <AlphaFairyImu.h>
+#include <AlphaFairy_NetMgr.h>
+#include <FairyEncoder.h>
+#include <FairyKeyboard.h>
+#include <M5DisplayExt.h>
+#include <M5Unified.h>
 #include <PtpIpCamera.h>
 #include <PtpIpSonyAlphaCamera.h>
-#include <SonyHttpCamera.h>
-#include "AlphaFairyCamera.h"
-#include <AlphaFairy_NetMgr.h>
-#include <AlphaFairyImu.h>
-#include <FairyKeyboard.h>
-#include <FairyEncoder.h>
 #include <SerialCmdLine.h>
 #include <SonyCameraInfraredRemote.h>
+#include <SonyHttpCamera.h>
+#include <SpriteMgr.h>
 
 #ifdef ENABLE_BUILD_LEPTON
 #include <Lepton.h>
@@ -236,7 +236,7 @@ void critical_error(const char* fp)
     esp_wifi_stop();
     esp_wifi_deinit();
     M5Lcd.setRotation(0);
-    M5Lcd.drawPngFile(SPIFFS, fp, 0, 0);
+    M5Lcd.drawPngFile(LittleFS, fp, 0, 0);
 
     if (wifi_err_reason != 0)
     {
@@ -361,23 +361,20 @@ void setup_aboutme(void)
 void spiffs_init(void)
 {
     uint8_t fail = 0;
-    if (!SPIFFS.begin(false))
+    if (!LittleFS.begin(false)) {
+      Serial.println("LittleFS Mount Failed");
+      fail = 1;
+    } else if (!LittleFS.exists("/about.png")) {
+      // A file that should exist which we can use to quickly test that the
+      // files are present. The main case here is that the user only flashed the
+      // firmware, and not the FS, so a single file is a sufficient check.
+      fail = 2;
+    } else if (!LittleFS.exists(
+                   ALFY_VERSION_FILE_CHECK)) // defined in alfy_conf.h
     {
-        Serial.println("SPIFFS Mount Failed");
-        fail = 1;
-    }
-    else if (!SPIFFS.exists("/about.png"))
-    {
-        // A file that should exist which we can use to quickly test that the files are present.
-        // The main case here is that the user only flashed the firmware, and not the FS, so a
-        // single file is a sufficient check.
-        fail = 2;
-    }
-    else if (!SPIFFS.exists(ALFY_VERSION_FILE_CHECK)) // defined in alfy_conf.h
-    {
-        // use this file to make sure the version matches the files
-        // change the file name when files are updated
-        fail = 3;
+      // use this file to make sure the version matches the files
+      // change the file name when files are updated
+      fail = 3;
     }
 
     // If there was any issue finding the images, give the user a helpful message
@@ -411,7 +408,7 @@ void spiffs_init(void)
         {
             yield();
             if (fail == 1) {
-                Serial.println("SPIFFS Mount Failed");
+              Serial.println("LittleFS Mount Failed");
             }
             else if (fail == 2) {
                 Serial.println("Image files are missing");

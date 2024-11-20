@@ -1,6 +1,6 @@
 #include "AlphaFairy.h"
-#include <M5StickCPlus.h>
 #include <M5DisplayExt.h>
+#include <M5Unified.h>
 
 #include "esp_pm.h"
 #include "esp32/pm.h"
@@ -446,73 +446,68 @@ void show_poweroff()
 
     if (batt_good)
     {
-        M5Lcd.drawPngFile(SPIFFS, "/sleep.png", 0, 0);
-        delay(500);
+      M5Lcd.drawPngFile(LittleFS, "/sleep.png", 0, 0);
+      delay(500);
 
-        // animation is random
+      // animation is random
 
-        if ((rand() % 2) == 0)
-        {
-            // fade by horizontal lines
-            int y, dly = 10, m = 50;
-            for (y = m + 0; y < M5Lcd.height() - m; y += 4) {
-                M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
-                delay(dly);
-            }
-            for (y = m + 2; y < M5Lcd.height() - m; y += 4) {
-                M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
-                delay(dly);
-            }
-            for (y = m + 1; y < M5Lcd.height() - m; y += 4) {
-                M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
-                delay(dly);
-            }
-            for (y = m + 3; y < M5Lcd.height() - m; y += 4) {
-                M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
-                delay(dly);
-            }
+      if ((rand() % 2) == 0) {
+        // fade by horizontal lines
+        int y, dly = 10, m = 50;
+        for (y = m + 0; y < M5Lcd.height() - m; y += 4) {
+          M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
+          delay(dly);
         }
-        else
-        {
-            // fade by snow, with dimming backlight
-            int b = config_settings.lcd_brightness - 1;
-            while (true)
-            {
-                uint32_t d = millis() - t;
-                if (d > 800) {
-                    t = millis();
-                    M5.Axp.ScreenBreath(b);
-                    b -= 1;
-                    if (b < 5) {
-                        break;
-                    }
-                }
-                int x = rand() % M5Lcd.width();
-                int y = 50 + (rand() % (M5Lcd.height() - 100));
-                M5Lcd.fillRect(x, y, 1, 1, TFT_BLACK);
-            }
+        for (y = m + 2; y < M5Lcd.height() - m; y += 4) {
+          M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
+          delay(dly);
         }
+        for (y = m + 1; y < M5Lcd.height() - m; y += 4) {
+          M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
+          delay(dly);
+        }
+        for (y = m + 3; y < M5Lcd.height() - m; y += 4) {
+          M5Lcd.drawFastHLine(0, y, M5Lcd.width(), TFT_BLACK);
+          delay(dly);
+        }
+      } else {
+        // fade by snow, with dimming backlight
+        int b = config_settings.lcd_brightness - 1;
+        while (true) {
+          uint32_t d = millis() - t;
+          if (d > 800) {
+            t = millis();
+            M5.Axp.ScreenBreath(b);
+            b -= 1;
+            if (b < 5) {
+              break;
+            }
+          }
+          int x = rand() % M5Lcd.width();
+          int y = 50 + (rand() % (M5Lcd.height() - 100));
+          M5Lcd.fillRect(x, y, 1, 1, TFT_BLACK);
+        }
+      }
     }
     else // battery is dead
     {
-        M5Lcd.drawPngFile(SPIFFS, "/dead_batt.png", 0, 0);
-        delay(500);
-        int b = config_settings.lcd_brightness - 1;
-        while (true)
-        {
-            uint32_t d = millis() - t;
-            if (d > 800) {
-                t = millis();
-                M5.Axp.ScreenBreath(b);
-                b -= 1;
-                if (b < 5) {
-                    break;
-                }
-            }
-            int x = rand() % M5Lcd.width();
-            int y = rand() % M5Lcd.height();
-            M5Lcd.fillRect(x, y, 1, 1, TFT_BLACK);
+      M5Lcd.drawPngFile(LittleFS, "/dead_batt.png", 0, 0);
+      delay(500);
+      int b = config_settings.lcd_brightness - 1;
+      while (true) {
+        uint32_t d = millis() - t;
+        if (d > 800) {
+          t = millis();
+          M5.Axp.ScreenBreath(b);
+          b -= 1;
+          if (b < 5) {
+            break;
+          }
         }
+        int x = rand() % M5Lcd.width();
+        int y = rand() % M5Lcd.height();
+        M5Lcd.fillRect(x, y, 1, 1, TFT_BLACK);
+      }
     }
 
     M5Lcd.fillScreen(TFT_BLACK);
@@ -527,13 +522,12 @@ void pmic_startCoulombCount(void)
     char fname[32];
     for (fnum = 1; fnum < 999; ) {
         sprintf(fname, "/pwrlog_%u.txt", fnum);
-        if (SPIFFS.exists(fname) == false) {
-            pmic_fnum = fnum;
-            break;
-        }
-        else {
-            fnum++;
-            continue;
+        if (LittleFS.exists(fname) == false) {
+          pmic_fnum = fnum;
+          break;
+        } else {
+          fnum++;
+          continue;
         }
     }
 
@@ -580,7 +574,7 @@ void pmic_log(void)
     sprintf(logstr, "%8u, %0.3f, %0.3f, %0.3f, %0.3f, \r\n", millis(), vbat, ibat, c, (c - prev_c) / 5);
     prev_c = c;
 
-    File f = SPIFFS.open(fname, FILE_APPEND);
+    File f = LittleFS.open(fname, FILE_APPEND);
     f.print(logstr);
     f.close();
 

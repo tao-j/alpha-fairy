@@ -308,7 +308,8 @@ class AppFocusCalib : public FairyMenuItem
                 return false;
             }
 
-            M5Lcd.drawPngFile(SPIFFS, "/focus_calib.png", 0, 0); // clear screen, removes text
+            M5Lcd.drawPngFile(LittleFS, "/focus_calib.png", 0,
+                              0); // clear screen, removes text
             bool success = fenc_calibrate();
             _success = success ? 1 : 2;
             set_redraw();

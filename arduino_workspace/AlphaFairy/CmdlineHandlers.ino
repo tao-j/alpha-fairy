@@ -313,27 +313,25 @@ void wifipwr_func(void* cmd, char* argstr, Stream* stream)
 
 void listlog_func(void* cmd, char* argstr, Stream* stream)
 {
-    File root = SPIFFS.open("/");
-    File file = root.openNextFile();
-    stream->println("listing log files");
-    while(file)
-    {
-        if (memcmp(file.name(), "pwrlog_", 7) == 0)
-        {
-            stream->print("file: ");
-            stream->println(file.name());
-        }
-        file = root.openNextFile();
+  File root = LittleFS.open("/");
+  File file = root.openNextFile();
+  stream->println("listing log files");
+  while (file) {
+    if (memcmp(file.name(), "pwrlog_", 7) == 0) {
+      stream->print("file: ");
+      stream->println(file.name());
+    }
+    file = root.openNextFile();
     }
     stream->println("end of file listing");
 }
 
 void readlog_func(void* cmd, char* argstr, Stream* stream)
 {
-    File f = SPIFFS.open(argstr);
-    stream->println();
-    while (f.available() > 0) {
-        stream->write((uint8_t)(f.read()));
+  File f = LittleFS.open(argstr);
+  stream->println();
+  while (f.available() > 0) {
+    stream->write((uint8_t)(f.read()));
     }
     f.close();
     stream->println();
@@ -342,7 +340,7 @@ void readlog_func(void* cmd, char* argstr, Stream* stream)
 void readhex_func(void* cmd, char* argstr, Stream* stream)
 {
     int i = 0;
-    File f = SPIFFS.open(argstr);
+    File f = LittleFS.open(argstr);
     stream->println();
     while (f.available() > 0) {
         stream->printf("0x%02X, ", (uint8_t)(f.read()));

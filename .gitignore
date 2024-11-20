@@ -131,3 +131,6 @@ dmypy.json
 #PlatformIO
 .pio
 .vscode
+
+deprecate
+.DS_store

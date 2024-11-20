@@ -8,11 +8,11 @@
 #include "alfy_types.h"
 #include "alfy_defs.h"
 
-#include <M5StickCPlus.h>
-#include <M5DisplayExt.h>
+#include <M5Unified.h>
+#include <M5GFX.h>
 #include <SpriteMgr.h>
 #include <FS.h>
-#include <SPIFFS.h>
+#include <LittleFS.h>
 #include <PtpIpCamera.h>
 #include <PtpIpSonyAlphaCamera.h>
 #include <SonyHttpCamera.h>

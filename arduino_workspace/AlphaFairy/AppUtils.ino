@@ -24,7 +24,7 @@ void app_waitAllReleaseGfx(uint8_t waitgfx)
     }
     else if (waitgfx == WAITGFX_UNSUPPORTED)
     {
-        M5Lcd.drawPngFile(SPIFFS, "/unsupported.png", 0, 0);
+      M5Lcd.drawPngFile(LittleFS, "/unsupported.png", 0, 0);
     }
 
     uint32_t now = millis();

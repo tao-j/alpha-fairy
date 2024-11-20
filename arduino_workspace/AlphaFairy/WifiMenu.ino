@@ -180,7 +180,7 @@ class PageWifiSelectProfile : public FairyMenuItem
             // press button to save
             config_settings.wifi_profile = _profile_num;
             settings_save();
-            M5Lcd.drawPngFile(SPIFFS, "/wificfg_profilesave.png", 95, 53);
+            M5Lcd.drawPngFile(LittleFS, "/wificfg_profilesave.png", 95, 53);
             // hold button to save-and-reboot
             uint32_t now, t = millis();
             while (((now = millis()) - t) < 2000 && btnBig_isPressed()) {
@@ -238,7 +238,7 @@ class PageFactoryReset : public FairyMenuItem
             settings_default();
             settings_save();
             wifiprofile_deleteAll();
-            M5Lcd.drawPngFile(SPIFFS, "/wificfg_frstdone.png", 0, 0);
+            M5Lcd.drawPngFile(LittleFS, "/wificfg_frstdone.png", 0, 0);
             delay(3000);
             if (btnBig_isPressed())
             {

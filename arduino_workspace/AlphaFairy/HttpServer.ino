@@ -1,7 +1,7 @@
 #include "AlphaFairy.h"
 #include <WiFi.h>
 #include <FS.h>
-#include <SPIFFS.h>
+#include <LittleFS.h>
 
 /*
 implement a simple web page interface for the user to change Wi-Fi configuration
@@ -205,11 +205,11 @@ void httpsrv_init()
         http_is_active = true;
         AsyncResponseStream* response = request->beginResponseStream("text/html");
         if (request->hasParam("profilenum", true) && request->hasParam("ssid", true) && request->hasParam("password", true) && request->hasParam("opmode", true)) {
-            AsyncWebParameter* paramNum    = request->getParam("profilenum", true);
-            AsyncWebParameter* paramSsid   = request->getParam("ssid"      , true);
-            AsyncWebParameter* paramPass   = request->getParam("password"  , true);
-            AsyncWebParameter* paramOpMode = request->getParam("opmode"    , true);
-            AsyncWebParameter* paramGuid = NULL;
+            const AsyncWebParameter* paramNum    = request->getParam("profilenum", true);
+            const AsyncWebParameter* paramSsid   = request->getParam("ssid"      , true);
+            const AsyncWebParameter* paramPass   = request->getParam("password"  , true);
+            const AsyncWebParameter* paramOpMode = request->getParam("opmode"    , true);
+            const AsyncWebParameter* paramGuid = NULL;
             if (request->hasParam("guid", true)) {
                 paramGuid = request->getParam("guid", true);
             }

@@ -36,7 +36,7 @@ void FairyMenuItem::draw_mainImage(void)
 {
     cpufreq_boost();
     M5Lcd.setRotation(0);
-    M5Lcd.drawPngFile(SPIFFS, _main_img, _main_img_x, _main_img_y);
+    M5Lcd.drawPngFile(LittleFS, _main_img, _main_img_x, _main_img_y);
     // if you need to overlay something else on top of the main image, then override this function, call it first, then do whatever you need to do
 }
 
@@ -400,7 +400,7 @@ void FairyCfgItem::draw_icon(void)
 {
     if (_icon_fpath != NULL && _icon_width > 0)
     {
-        M5Lcd.drawPngFile(SPIFFS, _icon_fpath, M5Lcd.width() - _icon_width, 0);
+      M5Lcd.drawPngFile(LittleFS, _icon_fpath, M5Lcd.width() - _icon_width, 0);
     }
     FairyCfgApp* p = dynamic_cast<FairyCfgApp*>((FairyCfgApp*)get_parent());
     if (p != NULL)
@@ -670,7 +670,8 @@ void FairyCfgApp::draw_icon(void)
     if (_icon_fname == NULL || _icon_width == 0) {
         return;
     }
-    M5Lcd.drawPngFile(SPIFFS, _icon_fname, M5Lcd.width() - _icon_width, M5Lcd.height() - _icon_width);
+    M5Lcd.drawPngFile(LittleFS, _icon_fname, M5Lcd.width() - _icon_width,
+                      M5Lcd.height() - _icon_width);
 }
 
 // this function is similar to FairySubmenu::task(void)

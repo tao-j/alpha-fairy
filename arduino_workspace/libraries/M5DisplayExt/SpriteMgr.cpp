@@ -1,6 +1,6 @@
 #include "SpriteMgr.h"
 #include <FS.h>
-#include <SPIFFS.h>
+#include <LittleFS.h>
 
 static uint16_t fletcher16_str(const uint8_t* data);
 
@@ -50,7 +50,7 @@ bool SpriteMgr::load(const char* fp, int16_t width, int16_t height)
     }
 
     sprite->createSprite(width, height);
-    this->tft->drawPngFileSprite(sprite, SPIFFS, fp, 0, 0);
+    this->tft->drawPngFileSprite(sprite, LittleFS, fp, 0, 0);
     node->sprite = sprite;
     node->uid = fletcher16_str((const uint8_t*)fp);
     node->next_node = NULL;
@@ -80,7 +80,7 @@ void SpriteMgr::draw(const char* fp, int16_t x, int16_t y, int16_t width, int16_
             else
             {
                 // failed, maybe ran out of memory, so draw directly
-                this->tft->drawPngFile(SPIFFS, fp, x, y);
+                this->tft->drawPngFile(LittleFS, fp, x, y);
             }
         }
         else {

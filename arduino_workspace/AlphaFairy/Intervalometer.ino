@@ -436,8 +436,10 @@ bool intervalometer_wait(
             need_blank = false; // do only once
         }
         if (stop_request && need_icon) {
-            M5Lcd.drawPngFile(SPIFFS, "/back_icon.png", M5Lcd.width() - GENERAL_ICON_WIDTH, 0);
-            need_icon = false; // do only once, SPI flash file read and file decoding is extremely slow
+          M5Lcd.drawPngFile(LittleFS, "/back_icon.png",
+                            M5Lcd.width() - GENERAL_ICON_WIDTH, 0);
+          need_icon = false; // do only once, SPI flash file read and file
+                             // decoding is extremely slow
         }
         interval_drawTimer(-1);
     }

@@ -53,7 +53,7 @@ bool wifiprofile_getProfileRaw(uint8_t idx, char* ssid, char* password, uint8_t*
     char fname[32];
     char* tmp = (char*)fname;
     wifiprofile_getIdxFname(idx, fname);
-    File f = SPIFFS.open(fname);
+    File f = LittleFS.open(fname);
     if (!f) {
         ssid[0] = 0;
         password[0] = 0;
@@ -112,7 +112,7 @@ bool wifiprofile_writeProfileRaw(uint8_t idx, char* ssid, char* password, uint8_
     char* tmp = (char*)fname;
     wifiprofile_getIdxFname(idx, fname);
 
-    File f = SPIFFS.open(fname, FILE_WRITE);
+    File f = LittleFS.open(fname, FILE_WRITE);
     if (!f) {
         return false;
     }
@@ -187,13 +187,13 @@ void wifiprofile_deleteProfile(uint8_t idx)
     char fname[16];
     char fname2[16];
     wifiprofile_getIdxFname(idx, (char*)fname);
-    SPIFFS.remove(fname);
+    LittleFS.remove(fname);
     for (; idx < WIFIPROFILE_LIMIT; idx++)
     {
         wifiprofile_getIdxFname(idx, (char*)fname);
         wifiprofile_getIdxFname(idx + 1, (char*)fname2);
-        if (SPIFFS.exists(fname2)) {
-            SPIFFS.rename(fname, fname2);
+        if (LittleFS.exists(fname2)) {
+          LittleFS.rename(fname, fname2);
         }
     }
 }
@@ -304,7 +304,7 @@ void force_wifi_config(const char* fp)
     M5.Axp.GetBtnPress();
     uint32_t t = millis(), now = t;
     M5Lcd.setRotation(0);
-    M5Lcd.drawPngFile(SPIFFS, fp, 0, 0);
+    M5Lcd.drawPngFile(LittleFS, fp, 0, 0);
 
     if (wifi_err_reason != 0)
     {
@@ -466,7 +466,7 @@ bool wifi_newConnectOrPrompt(uint8_t profile_num, wifiprofile_t* profile, bool n
             need_ask = true;
             WiFi.disconnect();
             NetMgr_reset();
-            M5Lcd.drawPngFile(SPIFFS, "/wifi_reject.png", 0, 0);
+            M5Lcd.drawPngFile(LittleFS, "/wifi_reject.png", 0, 0);
             while (true)
             {
                 autoconnect_poll();

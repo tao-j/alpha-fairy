@@ -285,7 +285,8 @@ class AppDualShutter : public FairyMenuItem
             {
                 cpufreq_boost();
                 M5Lcd.setRotation(0);
-                M5Lcd.drawPngFile(SPIFFS, "/dualshutter_shoot.png", _main_img_x, _main_img_y);
+                M5Lcd.drawPngFile(LittleFS, "/dualshutter_shoot.png",
+                                  _main_img_x, _main_img_y);
             }
         };
 

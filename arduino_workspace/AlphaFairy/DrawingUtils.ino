@@ -72,7 +72,7 @@ void gui_drawConnecting(bool first)
         conn_filename[11] = '0' + cur_idx;
         cpufreq_boost();
         M5Lcd.setRotation(0);
-        M5Lcd.drawPngFile(SPIFFS, conn_filename, 0, 0);
+        M5Lcd.drawPngFile(LittleFS, conn_filename, 0, 0);
     }
     redraw_flag = true;
 }
@@ -383,8 +383,11 @@ void draw_borderRect(int16_t thickness, uint16_t colour)
 
 void interval_drawTimerStart()
 {
-    //M5Lcd.drawPngFile(SPIFFS, "/timer_blank.png", M5Lcd.width() - GENERAL_ICON_WIDTH, M5Lcd.height() - GENERAL_ICON_WIDTH);
-    M5Lcd.fillRect(M5Lcd.width() - GENERAL_ICON_WIDTH, M5Lcd.height() - GENERAL_ICON_WIDTH, GENERAL_ICON_WIDTH, GENERAL_ICON_WIDTH, TFT_BLACK);
+  // M5Lcd.drawPngFile(LittleFS, "/timer_blank.png", M5Lcd.width() -
+  // GENERAL_ICON_WIDTH, M5Lcd.height() - GENERAL_ICON_WIDTH);
+  M5Lcd.fillRect(M5Lcd.width() - GENERAL_ICON_WIDTH,
+                 M5Lcd.height() - GENERAL_ICON_WIDTH, GENERAL_ICON_WIDTH,
+                 GENERAL_ICON_WIDTH, TFT_BLACK);
 }
 
 void interval_drawTimerLine(int16_t cx, int16_t cy, int8_t i, uint16_t colour)
