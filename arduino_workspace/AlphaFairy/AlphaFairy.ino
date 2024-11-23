@@ -65,6 +65,10 @@ void setup()
     settings_init();
     btns_init();
     SonyCamIr_Init();
+    #ifdef BOARD_HAS_PSRAM
+    bt_init();
+    bt_poll();
+    #endif
 
     M5.begin(false, true, false); // do not initialize the LCD, we have our own extended M5Lcd class to initialize later
     M5.IMU.Init();
@@ -188,6 +192,7 @@ bool app_poll()
         cmdline.task();
         fenc_task();
         btnPwr_poll();
+        bt_poll();
         shutterrelease_task();
 
         if (imu.hasMajorMotion) {

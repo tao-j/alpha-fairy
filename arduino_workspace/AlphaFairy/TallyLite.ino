@@ -1,7 +1,9 @@
 #include "AlphaFairy.h"
 #ifndef ARDUINO_M5Stick_C_Plus2
+#undef LED_PIN
 #define LED_PIN GPIO_NUM_10
 #else
+#undef LED_PIN
 #define LED_PIN GPIO_NUM_19
 #endif
 extern bool redraw_flag;
